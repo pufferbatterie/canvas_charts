@@ -2,12 +2,6 @@
 <head>
     <meta charset="utf-8">
     <title>canvas_charts - radar</title>
-    <style type="text/css">
-        canvas {
-            display: block;
-            margin: 0 auto;
-        }
-    </style>
 </head>
 
 <body>
@@ -15,6 +9,11 @@
 <script src="js/radarChart.js"></script>
 
 <h1>canvas_charts - radar</h1>
+
+<input id="text_dataUrl" type="text" style="width: 80%"
+       value="https://raw.githubusercontent.com/pufferbatterie/canvas_charts/master/radar/data/example.json" />
+<input id="btn_draw" type="button" value="draw!" />
+<br/><br/>
 <div id="tablespace"></div>
 
 <script>
@@ -52,13 +51,15 @@
             return table;
         }
 
-        fetch("https://raw.githubusercontent.com/pufferbatterie/canvas_charts/master/radar/data/example.json")
-            .then(resp => resp.json())
-            .then(function (resp) {
-                const t = constructTable(resp.data);
-                document.querySelector('#tablespace').appendChild(t);
-                $(t).radar_chart();
-            });
+        $("#btn_draw").click(function () {
+            fetch($("#text_dataUrl").val())
+                .then(resp => resp.json())
+                .then(function (resp) {
+                    const t = constructTable(resp.data);
+                    document.querySelector('#tablespace').appendChild(t);
+                    $(t).radar_chart();
+                });
+        });
 
     })();
 </script>

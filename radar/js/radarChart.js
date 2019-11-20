@@ -70,6 +70,8 @@
                 table.radar.canvas.width = canvasWidth;
                 table.radar.canvas.height = canvasWidth * 0.75;
                 table.radar.canvas.style.border = "1px solid black";
+                table.radar.canvas.style.display = "block";
+                table.radar.canvas.style.margin = "0 auto";
 
                 table.radar.ctx = table.radar.canvas.getContext('2d');
 
