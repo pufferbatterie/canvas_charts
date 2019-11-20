@@ -23,12 +23,15 @@
  */
 (function($){
     $.fn.radar_chart = function(options){
+
+        canvasWidth = $('body').innerWidth() * 0.8;
+
         var settings = $.extend({
             colors: [
                 '#dcdedc',
                 '#ed6d63'
             ],
-            lineWidth: 2,
+            lineWidth: canvasWidth/800,
             lineColor: '#ececec',
             textColor: '#353535'
         }, options);
@@ -64,8 +67,9 @@
 
                 // set up the canvas
                 table.radar.canvas = document.createElement('canvas');
-                table.radar.canvas.width = 800;
-                table.radar.canvas.height = 600;
+                table.radar.canvas.width = canvasWidth;
+                table.radar.canvas.height = canvasWidth * 0.75;
+                table.radar.canvas.style.border = "1px solid black";
 
                 table.radar.ctx = table.radar.canvas.getContext('2d');
 
@@ -145,7 +149,7 @@
 
                 // text
 
-                table.radar.ctx.font = 'normal normal 600 14px Lato';
+                table.radar.ctx.font = 'normal normal 600 ' + canvasWidth/60 + 'px Lato';
                 table.radar.ctx.textAlign = 'center';
                 table.radar.ctx.textBaseline = 'middle';
                 table.radar.ctx.fillStyle = settings.textColor;
