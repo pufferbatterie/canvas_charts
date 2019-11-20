@@ -1,0 +1,27 @@
+{
+  "id": "1",
+  "name": "my radar chart",
+  "data": {
+    "options": {
+      "lineWidth": 2,
+      "lineColor": "#ececec",
+      "textColor": "#353535"
+    },
+    "titles": [
+      "two",
+      "one",
+      "three"
+    ],
+    "fills": [
+      {
+        "name": "not shown",
+        "color": "#ececec",
+        "data": {
+          "one": 0.1,
+          "two": 0.5,
+          "three": 1
+        }
+      }
+    ]
+  }
+}

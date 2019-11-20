@@ -1,12 +1,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-
-    <title>The HTML5 Herald</title>
-    <meta name="description" content="The HTML5 Herald">
-    <meta name="author" content="SitePoint">
-
-    <!--<link rel="stylesheet" href="css/styles.css?v=1.0">-->
+    <title>canvas_charts - radar</title>
     <style type="text/css">
         canvas {
             display: block;
@@ -19,42 +14,13 @@
 <script src="js/jquery-3.4.1.js"></script>
 <script src="js/radarChart.js"></script>
 
+<h1>canvas_charts - radar</h1>
 <div id="tablespace"></div>
 
 <script>
-    var RADAR_DATA = {
-        "id": "1",
-        "name": "my radar chart",
-        "data": {
-            "options": {
-                "lineWidth": 2,
-                "lineColor": "#ececec",
-                "textColor": "#353535"
-            },
-            "titles": [
-                "two",
-                "one",
-                "three"
-            ],
-            "fills": [
-                {
-                    "name": "not shown",
-                    "color": "#ececec",
-                    "data": {
-                        "one": 0.1,
-                        "two": 0.5,
-                        "three": 1
-                    }
-                }
-            ]
-        }
-    };
-</script>
+    (function () {
 
-<script>
-    (function() {
-
-        function constructTable(radarData){
+        function constructTable(radarData) {
             let table = document.createElement("table");
 
             let thead = document.createElement("thead");
@@ -74,7 +40,7 @@
                 tbody_tr.dataset.radarColor = fill.color;
                 radarData.titles.forEach(function (title) {
                     let td = document.createElement("td");
-                    let td_text = document.createTextNode(fill.data[title]*100);
+                    let td_text = document.createTextNode(fill.data[title] * 100);
                     td.appendChild(td_text);
                     tbody_tr.appendChild(td);
                 });
@@ -85,9 +51,13 @@
             return table;
         }
 
-        let t = constructTable(RADAR_DATA.data);
-        t.className = "radar-chart";
-        document.querySelector('#tablespace').appendChild(t);
+        fetch("https://raw.githubusercontent.com/pufferbatterie/canvas_charts/master/radar/data/example.json")
+            .then(resp => resp.json())
+            .then(function (resp) {
+                let t = constructTable(resp.data);
+                document.querySelector('#tablespace').appendChild(t);
+                $(t).radar_chart();
+            });
 
     })();
 </script>

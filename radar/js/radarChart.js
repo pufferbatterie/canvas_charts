@@ -179,7 +179,4 @@
         }
     };
 
-    $(document).ready(function(){
-        $('.radar-chart').radar_chart();
-    });
 })(window.jQuery);
