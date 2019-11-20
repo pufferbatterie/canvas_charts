@@ -1,0 +1,99 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>The HTML5 Herald</title>
+    <meta name="description" content="The HTML5 Herald">
+    <meta name="author" content="SitePoint">
+
+    <!--<link rel="stylesheet" href="css/styles.css?v=1.0">-->
+    <style type="text/css">
+        canvas {
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+<script src="js/jquery-3.4.1.js"></script>
+<script src="js/radarChart.js"></script>
+
+<div id="tablespace"></div>
+
+<script>
+    var RADAR_DATA = {
+        "id": "1",
+        "name": "my radar chart",
+        "data": {
+            "options": {
+                "lineWidth": 2,
+                "lineColor": "#ececec",
+                "textColor": "#353535"
+            },
+            "titles": [
+                "two",
+                "one",
+                "three"
+            ],
+            "fills": [
+                {
+                    "name": "not shown",
+                    "color": "#ececec",
+                    "data": {
+                        "one": 0.1,
+                        "two": 0.5,
+                        "three": 1
+                    }
+                }
+            ]
+        }
+    };
+</script>
+
+<script>
+    (function() {
+
+        function constructTable(radarData){
+            let table = document.createElement("table");
+
+            let thead = document.createElement("thead");
+            let thead_tr = document.createElement("tr");
+            radarData.titles.forEach(function (title) {
+                let th = document.createElement("th");
+                let th_text = document.createTextNode(title);
+                th.appendChild(th_text);
+                thead_tr.appendChild(th);
+            });
+            thead.appendChild(thead_tr);
+            table.appendChild(thead);
+
+            let tbody = document.createElement("tbody");
+            radarData.fills.forEach(function (fill) {
+                let tbody_tr = document.createElement("tr");
+                tbody_tr.dataset.radarColor = fill.color;
+                radarData.titles.forEach(function (title) {
+                    let td = document.createElement("td");
+                    let td_text = document.createTextNode(fill.data[title]*100);
+                    td.appendChild(td_text);
+                    tbody_tr.appendChild(td);
+                });
+                tbody.appendChild(tbody_tr);
+            });
+            table.appendChild(tbody);
+
+            return table;
+        }
+
+        let t = constructTable(RADAR_DATA.data);
+        t.className = "radar-chart";
+        document.querySelector('#tablespace').appendChild(t);
+
+        let renderedChart = document.querySelector('canvas');
+        renderedChart.style.border = "1px solid black"
+
+    })();
+</script>
+
+</body>
+</html>
