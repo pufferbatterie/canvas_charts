@@ -5,7 +5,7 @@ canvas_charts - radar
 
 ![](data/radar_chart.png)
 
-By "Right Click -> Save image as" you can download a **transparent png** of the canvas 
+By "Right Click -> Save image as" you can download a **transparent png** of the canvas <a href="https://pufferbatterie.github.io/canvas_charts-master/radar/" target="_blank">(**try here**)</a>
 
 
 data format
